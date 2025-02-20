@@ -1,0 +1,27 @@
+name: Force Push Branch
+
+on:
+  push:
+    branches:
+      - '*'
+jobs:
+  force-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Ensure full history is fetched
+
+      - name: Set up Git
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+      - name: Force Push Branch
+        run: |
+          git fetch origin main
+          git checkout main
+          git push --force origin main:olive
+        #env:
+          #GIT_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
