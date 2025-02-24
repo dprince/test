@@ -8,3 +8,5 @@ on:
 jobs:
   call-build-workflow:
     uses: dprince/openstack-k8s-operators-ci/.github/workflows/release-branch-sync.yaml@release-branch-sync
+    with:
+      target_branch: foo
